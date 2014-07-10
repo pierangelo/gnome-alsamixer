@@ -11,6 +11,7 @@ override_dh_autoreconf:
 
 override_dh_clean:
 	rm -f INSTALL
+	#Disabled for now
 	#rm -f mkinstalldirs
 	rm -f po/Makefile.in.in
 	rm -f po/*.gmo

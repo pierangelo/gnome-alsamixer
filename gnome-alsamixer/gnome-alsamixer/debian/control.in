@@ -1,9 +1,9 @@
 Source: gnome-alsamixer
 Section: sound
 Priority: optional
-Maintainer: Mohammed Adnène Trojette <adn+deb@diwi.org>
-Build-Depends: @cdbs@, gnome-pkg-tools, libgnomeui-dev, libasound2-dev, autotools-dev, intltool
-Standards-Version: 3.8.0
+Maintainer: Pierangelo Mancusi <pierangelo.mancusi@gmail.com>
+Build-Depends: debhelper (>= 9), dh-autoreconf, gnome-pkg-tools, intltool, patchutils (>= 0.2.25), autotools-dev, libasound2-dev, libgnomeui-dev
+Standards-Version: 3.9.4
 
 Package: gnome-alsamixer
 Architecture: any
