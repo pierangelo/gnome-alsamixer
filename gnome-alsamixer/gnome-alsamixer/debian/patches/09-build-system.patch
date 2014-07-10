@@ -1,0 +1,27 @@
+Description: Fix some antiquated autoconf files.
+Author: Barry deFreese <bdefreese@debian.org>
+Index: gnome-alsamixer-0.9.7~cvs.20060916.ds.1/configure.ac
+===================================================================
+--- gnome-alsamixer-0.9.7~cvs.20060916.ds.1.orig/configure.ac	2014-07-08 16:52:02.484910979 +0200
++++ gnome-alsamixer-0.9.7~cvs.20060916.ds.1/configure.ac	2014-07-08 16:52:14.000000000 +0200
+@@ -12,7 +12,7 @@
+ AC_PROG_INSTALL
+ AC_HEADER_STDC
+ AC_C_CONST
+-AC_CHECK_FUNCS([rint])
++AC_SEARCH_LIBS(rint, m)
+ 
+ AC_ARG_ENABLE(debug, [  --enable-debug=[no/yes] turn on debugging [default=no]],,enable_debug=no)
+ 
+Index: gnome-alsamixer-0.9.7~cvs.20060916.ds.1/src/Makefile.am
+===================================================================
+--- gnome-alsamixer-0.9.7~cvs.20060916.ds.1.orig/src/Makefile.am	2014-07-08 16:52:14.000000000 +0200
++++ gnome-alsamixer-0.9.7~cvs.20060916.ds.1/src/Makefile.am	2014-07-08 16:52:14.000000000 +0200
+@@ -1,6 +1,6 @@
+ ## Process this file with automake to produce Makefile.in
+ 
+-INCLUDES = \
++AM_CPPFLAGS = \
+ 	-DPACKAGE_DATA_DIR=\""$(datadir)/gnome-alsamixer"\"        \
+ 	-DPIXMAP_ICONDIR=\""$(datadir)/pixmaps/gnome-alsamixer"\"  \
+ 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \

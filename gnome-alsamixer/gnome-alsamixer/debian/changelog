@@ -1,0 +1,150 @@
+gnome-alsamixer (0.9.7~cvs.20060916.ds.1-6) unstable; urgency=low
+
+  * New maintainer. Closes: #691265.
+  * Fix "FTBFS gam-slider-dual.c:279: error: undefined reference to 'lrint' "
+    Closes: #753263.
+  * Fix "GUI is too large"
+    Closes: #222490
+  * Fix "Settings are not saved"
+    Closes: #691263 
+  * Fix "Slider widgets displayed the wrong way around"
+    Closes: #416949
+  * Fix "FTBFS mkinstalldir"
+
+ -- Pierangelo Mancusi <pierangelo.mancusi@gmail.com>  Mon, 1 Jul 2014 17:28:58 +0200
+
+
+
+gnome-alsamixer (0.9.7~cvs.20060916.ds.1-5) unstable; urgency=low
+
+  * QA upload.
+  * Update 08-implicit-func-decl.patch to pass correct parameters
+    to g_io_add_watch. (Closes: #716785).
+
+ -- Barry deFreese <bdefreese@debian.org>  Sat, 13 Jul 2013 13:20:55 -0400
+
+gnome-alsamixer (0.9.7~cvs.20060916.ds.1-4) unstable; urgency=low
+
+  * QA upload.
+  * Set maintainer to Debian QA Group.
+  * Patch to link libm. (Closes: #713615).
+  * Add patch to fix gnome/gtk implicit declaration warnings.
+    + Thanks to Daniel T Chen for the patch.
+  * Update to source format 3.0 (quilt).
+    + Drop build-dep on quilt.
+  * Change build system from CDBS to dh and update rules.
+  * Fix up desktop file. (Closes: #693854).
+    + Remove Application from categories.
+    + Convert file to UTF-8.
+  * Add empty watch file.
+  * Bump debhelper build-dep and compat to 9.
+
+ -- Barry deFreese <bdefreese@debian.org>  Tue, 09 Jul 2013 12:13:24 -0400
+
+gnome-alsamixer (0.9.7~cvs.20060916.ds.1-3) unstable; urgency=low
+
+  * New 06-use-libgnome-headers.patch.
+    Closes: #646559
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sat, 29 Oct 2011 19:55:10 +0200
+
+gnome-alsamixer (0.9.7~cvs.20060916.ds.1-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix "FTBFS: gnome-app-helper.h:620:2: error: expected specifier-
+    qualifier-list before 'GtkCallbackMarshal'": add patches from Ubuntu /
+    Julien Lavergne:
+    + debian/patches:
+      - 05-remove-G_CONST_RETURN.patch: Remove usage of G_CONST_RETURN.
+      - 06-use-libgnome-headers.patch: Use correct headers.
+    + debian/rules:
+      - Remove deprecated flags.
+    Closes: #622067, LP: #749291
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 21 Oct 2011 15:42:12 +0200
+
+gnome-alsamixer (0.9.7~cvs.20060916.ds.1-2) unstable; urgency=low
+
+  * Bump Standards-Version to 3.8.0 and debhelper compat to 7.
+  * Regenerate control from control.in and adjust.
+  * Fix lintian warnings (about the .desktop and .menu files).
+  * Add ',' to accepted delimiters. Thanks Alexis for the patch.
+    (Closes: #400667)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Fri, 04 Jan 2008 00:45:57 +0100
+
+gnome-alsamixer (0.9.7~cvs.20060916.ds.1-1) unstable; urgency=low
+
+  * Redo orig tarball not to include autom4te.cache and remove .gmo files in
+    clean target. (Closes: #424336)
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Wed, 16 May 2007 01:25:38 +0200
+
+gnome-alsamixer (0.9.7~cvs.20060916-2) unstable; urgency=medium
+
+  * Rebootstraping to fix FTBFS.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Tue, 17 Apr 2007 14:44:17 +0200
+
+gnome-alsamixer (0.9.7~cvs.20060916-1) unstable; urgency=low
+
+  * New upstream CVS snapshot:
+     + help has been removed. (Closes: #247832)
+  * Switch to cdbs and quilt.
+  * debian/patches:
+     + 01_icon.diff:
+        - gnome-alsamixer-icon.xpm icon.
+     + 02_change_gconf-keys_path.diff:
+        - replace /apps/PAW/gnome-alsamixer with /apps/gnome-alsamixer.
+     + 03_gnome-alsamixer.schemas.diff:
+        - intent to guess gnome-alsamixer's gconf schemas.
+  * Bump Standards-Version to 3.7.2.
+  * Update debian/copyright:
+     + update FSF address.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Sat, 16 Sep 2006 02:13:02 +0200
+
+gnome-alsamixer (0.9.6-3) unstable; urgency=low
+
+  * Really add desktop file thanks to Kevin Locke.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Wed, 23 Nov 2005 23:02:54 +0100
+
+gnome-alsamixer (0.9.6-2) unstable; urgency=low
+
+  * New maintainer. Closes: #322093.
+  * Fix FTBFS. Closes: #323517
+    (patch courtesy from Roland Stigge <stigge@antcom.de>)
+  * Correct Debian menu (Closes: #229803)
+  * Re-added desktop file (Closes: #229798, #294069)
+  * Added a pixmaps/gnome-alsamixer-icon.xpm picture
+  * Switch to new Standards-Version.
+
+ -- Mohammed Adnène Trojette <adn+deb@diwi.org>  Mon, 22 Aug 2005 22:28:58 +0200
+
+gnome-alsamixer (0.9.6-1) unstable; urgency=low
+
+  * New upstream version.
+  * Preferences are now saved correctly; closes: #181179.
+  * Removed warnings at startup; closes: #222986.
+
+ -- Davide Puricelli (evo) <evo@debian.org>  Tue, 20 Jan 2004 17:43:25 +0100
+
+gnome-alsamixer (0.9.3-3) unstable; urgency=low
+
+  * New maintainer. 
+
+ -- Davide Puricelli (evo) <evo@debian.org>  Tue, 18 Feb 2003 12:57:29 +0100
+
+gnome-alsamixer (0.9.3-2) unstable; urgency=low
+
+  * Rebuild against new gnome libs 
+
+ -- Stefan Schwandter <swan@debian.org>  Thu, 30 Jan 2003 09:20:25 +0100
+
+gnome-alsamixer (0.9.3-1) unstable; urgency=low
+
+  * Initial Release (closes: #174268).
+
+ -- Stefan Schwandter <swan@debian.org>  Wed, 25 Dec 2002 11:19:24 +0100
+

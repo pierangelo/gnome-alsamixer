@@ -1,0 +1,13 @@
+Description: Link in libm.
+Bug-Debian: http://bugs.debian.org/713615
+Author: Barry deFreese <bdefreese@debian.org>
+Index: gnome-alsamixer-0.9.7~cvs.20060916/src/Makefile.am
+===================================================================
+--- gnome-alsamixer-0.9.7~cvs.20060916.orig/src/Makefile.am	2013-07-10 11:19:53.000000000 -0400
++++ gnome-alsamixer-0.9.7~cvs.20060916/src/Makefile.am	2013-07-10 11:20:11.000000000 -0400
+@@ -23,4 +23,4 @@
+ 	gam-prefs-dlg.c gam-prefs-dlg.h \
+ 	gam-props-dlg.c gam-props-dlg.h
+ 
+-gnome_alsamixer_LDADD = @PACKAGE_LIBS@
++gnome_alsamixer_LDADD = @PACKAGE_LIBS@ -lm

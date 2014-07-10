@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+export DH_OPTION=-v
+
+%:
+	dh $@ --with autoreconf
+
+override_dh_autoreconf:
+	#Hideous hack for now.
+	cp -f /usr/share/glib-2.0/gettext/po/Makefile.in.in po/
+	dh_autoreconf
+
+override_dh_clean:
+	rm -f INSTALL
+	#rm -f mkinstalldirs
+	rm -f po/Makefile.in.in
+	rm -f po/*.gmo
+	dh_clean

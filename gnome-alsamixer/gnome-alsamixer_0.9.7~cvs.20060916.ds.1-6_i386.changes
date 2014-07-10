@@ -1,0 +1,38 @@
+Format: 1.8
+Date: Mon, 1 Jul 2014 17:28:58 +0200
+Source: gnome-alsamixer
+Binary: gnome-alsamixer
+Architecture: source i386
+Version: 0.9.7~cvs.20060916.ds.1-6
+Distribution: unstable
+Urgency: low
+Maintainer: Debian QA Group <packages@qa.debian.org>
+Changed-By: Pierangelo Mancusi <pierangelo.mancusi@gmail.com>
+Description: 
+ gnome-alsamixer - ALSA sound mixer for GNOME
+Closes: 222490 416949 691263 691265 753263
+Changes: 
+ gnome-alsamixer (0.9.7~cvs.20060916.ds.1-6) unstable; urgency=low
+ .
+   * New maintainer. Closes: #691265.
+   * Fix "FTBFS gam-slider-dual.c:279: error: undefined reference to 'lrint' "
+     Closes: #753263.
+   * Fix "GUI is too large"
+     Closes: #222490
+   * Fix "Settings are not saved"
+     Closes: #691263
+   * Fix "Slider widgets displayed the wrong way around"
+     Closes: #416949
+   * Fix "FTBFS mkinstalldir"
+Checksums-Sha1: 
+ 26a748baefd4808784a5facc1d20c648460cf991 1086 gnome-alsamixer_0.9.7~cvs.20060916.ds.1-6.dsc
+ 54119e2ac54d1d16d651c6d04fd20bcca90a23f8 11778 gnome-alsamixer_0.9.7~cvs.20060916.ds.1-6.debian.tar.gz
+ b33a2b9fbeb67890ca1912ac6c162cd25c2137d9 57614 gnome-alsamixer_0.9.7~cvs.20060916.ds.1-6_i386.deb
+Checksums-Sha256: 
+ 4e62d4e0534b529224bf73b927056eef98755ba85c7bf173ea17a5b79ae944f1 1086 gnome-alsamixer_0.9.7~cvs.20060916.ds.1-6.dsc
+ a32707446955b3688a838b9c05292d44bb379d5b435d973de6c21c1d6ccb4a1b 11778 gnome-alsamixer_0.9.7~cvs.20060916.ds.1-6.debian.tar.gz
+ 79e85af31735b0944f0ff58514418622ec17c3c80ae7b5e2f92568591b1c5a45 57614 gnome-alsamixer_0.9.7~cvs.20060916.ds.1-6_i386.deb
+Files: 
+ 25cf3f615e9f568bc0f83070c5b5d91c 1086 sound optional gnome-alsamixer_0.9.7~cvs.20060916.ds.1-6.dsc
+ b54f61cc808a120f42111a51e3a060f4 11778 sound optional gnome-alsamixer_0.9.7~cvs.20060916.ds.1-6.debian.tar.gz
+ 4213b4d5e3db2dff89607e7711f8bab9 57614 sound optional gnome-alsamixer_0.9.7~cvs.20060916.ds.1-6_i386.deb

@@ -1,0 +1,10 @@
+01_icon.diff
+02_change_gconf-keys_path.diff
+03_gnome-alsamixer.schemas.diff
+04_ignore-delimiters.diff
+05-remove-G_CONST_RETURN.patch
+06-use-libgnome-headers.patch
+07-link-libm.patch
+08-implicit-func-decl.patch
+09-build-system.patch
+

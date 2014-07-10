@@ -1,0 +1,16 @@
+# Closes: #753263 <https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=753263>
+
+diff --git a/configure b/configure
+index 78057f5..627230a 100755
+--- a/configure
++++ b/configure
+@@ -3372,7 +3372,8 @@
+   am__fastdepCC_FALSE=
+ fi
+ 
+-
++#to avoid FTBFS
++LIBS="-lm "
+ 
+ { echo "$as_me:$LINENO: checking for library containing strerror" >&5
+ echo $ECHO_N "checking for library containing strerror... $ECHO_C" >&6; }

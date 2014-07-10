@@ -1,0 +1,27 @@
+Source: gnome-alsamixer
+Section: sound
+Priority: optional
+Maintainer: Debian QA Group <packages@qa.debian.org>
+Build-Depends: debhelper (>= 9), dh-autoreconf, gnome-pkg-tools, intltool, patchutils (>= 0.2.25), autotools-dev, libasound2-dev, libgnomeui-dev
+Standards-Version: 3.9.4
+
+Package: gnome-alsamixer
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ALSA sound mixer for GNOME
+ A "volume control" application. You can use it to adjust the volume
+ of different sound sources of your sound card.
+ .
+ It has a nice graphical user interface and a lot of features:
+ .
+  - access to all of your computers sound cards and audio sources
+  - possibility to give them custom names
+  - only display the mixer controls you need
+  - access to all the extra features some sound cards offer, like
+    3d enhancement, microphone gain boost...
+  - and more
+ .
+ This application uses the ALSA sound API, you cannot use it if you
+ use the (older) OSS drivers for your sound card(s). In return, it
+ gives you access to all the functionality ALSA provides with the
+ "alsamixer" program, found in the "alsa-utils" package.

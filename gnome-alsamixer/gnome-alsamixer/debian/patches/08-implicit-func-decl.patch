@@ -1,0 +1,94 @@
+Description: Fix implicit function declarations.
+Author: Daniel T Chen <crimsun@ubuntu.com>
+Index: gnome-alsamixer-0.9.7~cvs.20060916.ds.1/src/gam-app.c
+===================================================================
+--- gnome-alsamixer-0.9.7~cvs.20060916.ds.1.orig/src/gam-app.c	2013-07-13 14:32:45.788485257 -0400
++++ gnome-alsamixer-0.9.7~cvs.20060916.ds.1/src/gam-app.c	2013-07-13 14:32:45.780485217 -0400
+@@ -261,7 +261,7 @@
+     g_signal_connect (G_OBJECT (gam_app), "delete_event",
+                       G_CALLBACK (gam_app_delete), NULL);
+ 
+-    gnome_window_icon_set_default_from_file (PIXMAP_ICONDIR"/gnome-alsamixer-icon.png");
++    gtk_window_set_default_icon_from_file (PIXMAP_ICONDIR"/gnome-alsamixer-icon.png", NULL);
+ 
+     // Build the main menu and toolbar
+     gtk_action_group_add_actions (priv->main_action_group, action_entries,
+Index: gnome-alsamixer-0.9.7~cvs.20060916.ds.1/src/gam-mixer.c
+===================================================================
+--- gnome-alsamixer-0.9.7~cvs.20060916.ds.1.orig/src/gam-mixer.c	2013-07-13 14:32:45.788485257 -0400
++++ gnome-alsamixer-0.9.7~cvs.20060916.ds.1/src/gam-mixer.c	2013-07-13 14:33:34.276725697 -0400
+@@ -89,9 +89,9 @@
+                                               GValue                *value,
+                                               GParamSpec            *pspec);
+ static void     gam_mixer_construct_elements (GamMixer              *gam_mixer);
+-static void     gam_mixer_refresh            (gpointer               data,
+-                                              gint                   source,
+-                                              GdkInputCondition      condition);
++GIOFunc         gam_mixer_refresh            (GIOChannel             *source,
++                                              GIOCondition           condition,
++                                              gpointer               data);
+ 
+ static gpointer parent_class;
+ static guint signals[LAST_SIGNAL] = { 0 };
+@@ -234,7 +234,7 @@
+     guint input_id;
+ 
+     for (input_id = 0; input_id < priv->input_id_count; ++input_id)
+-        gtk_input_remove (priv->input_ids[input_id]);
++        g_source_remove (priv->input_ids[input_id]);
+ 
+     g_free (priv->card_id);
+     g_free (priv->card_name);
+@@ -327,11 +327,14 @@
+         const gint source = pollfd->fd;
+         const short events = pollfd->events;
+ 
+-        if (events & POLLIN)  condition |= GDK_INPUT_READ;
+-        if (events & POLLOUT) condition |= GDK_INPUT_WRITE;
+-        if (events & POLLPRI) condition |= GDK_INPUT_EXCEPTION;
++        GIOChannel *srcchan;
++	srcchan = g_io_channel_unix_new (source);
+ 
+-        input_ids[input_id] = gtk_input_add_full (source, condition, gam_mixer_refresh, 0, gam_mixer, 0);
++        if (events & POLLIN)  condition |= G_IO_IN;
++        if (events & POLLOUT) condition |= G_IO_OUT;
++        if (events & POLLPRI) condition |= G_IO_PRI;
++
++        input_ids[input_id] = g_io_add_watch (srcchan, condition, gam_mixer_refresh, gam_mixer);
+       }
+ 
+     priv->input_ids = input_ids;
+@@ -564,8 +567,8 @@
+     g_signal_emit (G_OBJECT (gam_mixer), signals[VISIBILITY_CHANGED], 0);
+ }
+ 
+-static void
+-gam_mixer_refresh (gpointer data, gint source, GdkInputCondition condition)
++GIOFunc
++gam_mixer_refresh (GIOChannel *source, GIOCondition condition, gpointer data)
+ {
+     GamMixerPrivate *priv;
+     const GamMixer * const gam_mixer = GAM_MIXER (data);
+Index: gnome-alsamixer-0.9.7~cvs.20060916.ds.1/src/gam-props-dlg.c
+===================================================================
+--- gnome-alsamixer-0.9.7~cvs.20060916.ds.1.orig/src/gam-props-dlg.c	2013-07-13 14:32:45.788485257 -0400
++++ gnome-alsamixer-0.9.7~cvs.20060916.ds.1/src/gam-props-dlg.c	2013-07-13 14:32:45.784485237 -0400
+@@ -184,7 +184,9 @@
+ 
+     priv = GAM_PROPS_DLG_GET_PRIVATE (gam_props_dlg);
+ 
++#if !GTK_CHECK_VERSION(2,21,8)
+     gtk_dialog_set_has_separator (GTK_DIALOG (gam_props_dlg), FALSE);
++#endif
+ 
+     gtk_dialog_add_button (GTK_DIALOG (gam_props_dlg),
+                            GTK_STOCK_CLOSE,
+@@ -202,7 +204,7 @@
+     vadjustment = gtk_adjustment_new (0, 0, 101, 5, 5, 5);
+     scrolled_window = gtk_scrolled_window_new (GTK_ADJUSTMENT (hadjustment),
+                                                GTK_ADJUSTMENT (vadjustment));
+-    gtk_widget_set_usize (scrolled_window, -1, 350);
++    gtk_widget_set_size_request (scrolled_window, -1, 350);
+     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
+                                     GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+     gtk_box_pack_start (GTK_BOX (GTK_DIALOG (gam_props_dlg)->vbox),
